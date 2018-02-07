@@ -17,4 +17,7 @@ if __name__=='__main__':
 
     dataset=np.array(dataset)
     print(dataset)
+    dataset=dataset[:,:-1]
+    target=dataset[:,-1]
+    
 
