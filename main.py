@@ -83,5 +83,9 @@ if __name__=='__main__':
     #Plotting(dataset,target)
     #Plot is done    
     dataset, components =doPCA(dataset)
+    pickle_object=open("DatasetPCA","w+")
+    pickle.dump(dataset,pickle_object)
+    pickle_object.close()
+    #Dataset is pickled and kept in the working directory
     DecisionTree(dataset,target)
 
