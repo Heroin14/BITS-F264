@@ -29,11 +29,11 @@ def Plotting(dataset, target):
     plt.legend()
     plt.show()
 
-"""def openFile():
-    f=open("Accuracies.txt","w+")
-    return f"""
-"""def closeFile(f):
-    f.close()"""
+def openFile():
+    f=open("Accuracies.txt","a+")
+    return f
+def closeFile(f):
+    f.close()
 
 def DecisionTree(dataset , target):
     
