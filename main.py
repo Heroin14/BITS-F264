@@ -33,7 +33,7 @@ def doPCA(dataset):
     dataset=pca.fit_transform(dataset)
 
     components= dataset[0].size
-    print(components)
+   
 
     #altered database
     return dataset, components
