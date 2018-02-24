@@ -7,7 +7,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 import pickle
 from sklearn.ensemble import GradientBoostingClassifier
-
+from sklearn.ensemble import RandomForestClassifier
 
 def Plotting(dataset, target):
 
@@ -37,17 +37,36 @@ def openFile():
 def closeFile(f):
     f.close()
 
+def RandomFrst(dataset, target):
+    clf= RandomForestClassifier()
+    sum=0
+
+    for i in range(5):
+        X_train,X_test,y_train,y_test=train_test_split(dataset,target, test_size=0.1)
+        clf.fit(X_train,y_train)
+        sum+=clf.score(X_test,y_test)
+
+    avg=sum/5
+    
+    f=openFile()
+    f.write("Random Forest Classifier ")
+    f.write(str(avg))
+    f.write("\n")
+    closeFile(f)
+
 
 def GradientBoosting(dataset, target):
     clf=GradientBoostingClassifier()
-
     sum=0
+
+
     for i in range(5):
         X_train,X_test,y_train,y_test=train_test_split(dataset,target, test_size=0.1)
         clf.fit(X_train,y_train)
         sum+=clf.score(X_test,y_test)
     
     avg=sum/5
+    
     f=openFile()
     f.write("GradientBoostingClassfier ")
     f.write(str(avg))
@@ -84,7 +103,7 @@ def doPCA(dataset):
     return dataset, components
 
 if __name__=='__main__':
-    """    
+    
     dataset=[]            
     with open('dataA2.csv','r+') as inf:
         reader= csv.reader(inf, delimiter=',')
@@ -106,8 +125,10 @@ if __name__=='__main__':
     pickle.dump([dataset,target],pickle_object)
     pickle_object.close()
     #Dataset is pickled and kept in the working directory 
-    """
-    dataset,target=pickle.load(open("DatasetPCA","rb"))
-    print("asd")
-    #DecisionTree(dataset,target)
-    #GradientBoosting(dataset,target)
+    
+
+    #dataset,target=pickle.load(open("DatasetPCA","rb"))
+    Plotting(dataset,target)
+    DecisionTree(dataset,target)
+    GradientBoosting(dataset,target)
+    RandomFrst(dataset, target)
